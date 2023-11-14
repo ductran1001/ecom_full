@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -32,6 +33,7 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
+            'msg' => 'Đăng nhập thành công'
         ], 200);
     }
 
@@ -42,5 +44,16 @@ class AuthController extends Controller
 
     public function forget()
     {
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('get.admin.login');
     }
 }

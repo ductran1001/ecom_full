@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckAdmin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -23,6 +23,7 @@ class CheckAdmin
         }
 
         if (auth()->user()->role != 3) {
+            auth()->logout();
             toastr()->error('Bạn không có quyền truy cập trang này.');
             return redirect()->route('get.admin.login');
         }

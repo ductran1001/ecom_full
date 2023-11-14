@@ -23,21 +23,24 @@
 </head>
 
 <body>
-    @if ('auth page')
+    @guest
         @yield('body')
-    @else
-        <div class="wrapper">
-            @include('backend.base.sidebar')
+    @endguest
+    @auth
+        @if (auth()->user()->role == 3)
+            <div class="wrapper">
+                @include('backend.base.sidebar')
 
-            <div class="main">
-                @include('backend.base.navbar')
+                <div class="main">
+                    @include('backend.base.navbar')
 
-                @yield('body')
+                    @yield('body')
 
-                @include('frontend.base.footer')
+                    @include('frontend.base.footer')
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
+    @endauth
     <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @stack('js')

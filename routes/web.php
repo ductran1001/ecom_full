@@ -14,7 +14,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/dang-ki', [BackendController\AuthController::class, 'register'])->name('get.admin.register');
     Route::get('/quen-mat-khau', [BackendController\AuthController::class, 'forget'])->name('get.admin.forget_pass');
 
-    Route::middleware(['checkAdmin'])->group(function () {
+    Route::get('/dang-xuat', [BackendController\AuthController::class, 'logout'])->name('get.admin.logout');
+
+    Route::middleware(['isAdmin'])->group(function () {
         Route::get('/tong-quan', [BackendController\HomeController::class, 'index'])->name('get.admin.home');
     });
 });

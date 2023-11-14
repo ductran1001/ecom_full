@@ -3,7 +3,7 @@
     <main class="d-flex w-100">
         <div class="container d-flex flex-column">
             <div class="row vh-100">
-                <div class="col-sm-10 col-md-4 col-lg-4 mx-auto d-table h-100">
+                <div class="col-sm-10 col-md-8 col-lg-4 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
                         <div class="card">
                             <div class="card-body">
@@ -12,7 +12,8 @@
                                         <img src="{{ asset('backend/img/avatar.jpg') }}" alt="Charles Hall"
                                             class="img-fluid rounded-circle" width="132" height="132" />
                                     </div>
-                                    <form id="ajax_form">
+                                    <form id="ajax_form" replace='{{ route('get.admin.home') }}'
+                                        action="{{ route('post.admin.login') }}" method="POST">
                                         @csrf
                                         <div class="mb-3 form-wrapper">
                                             <label class="form-label">Địa chỉ email</label>
