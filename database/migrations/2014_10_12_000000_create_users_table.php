@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->tinyInteger('role')->default(1)->comment('1-customer,2-vendor,3-admin');
+            $table->tinyInteger('role')->default(1)->comment('1-customer,2-admin');
             $table->tinyInteger('status')->default(1)->comment('1-inactive,2-active');
             $table->rememberToken();
             $table->timestamps();

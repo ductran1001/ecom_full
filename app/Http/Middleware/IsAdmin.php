@@ -18,14 +18,12 @@ class IsAdmin
     {
 
         if (!auth()->check()) {
-            toastr()->error('Bạn cần đăng nhập để truy cập trang này.');
-            return redirect()->route('get.admin.login');
+            return redirect()->route('get.admin.login')->with('error', 'You need to log in to access this page.');
         }
 
-        if (auth()->user()->role != 3) {
+        if (auth()->user()->role != 2) {
             auth()->logout();
-            toastr()->error('Bạn không có quyền truy cập trang này.');
-            return redirect()->route('get.admin.login');
+            return redirect()->route('get.admin.login')->with('error', 'You can not access this page.');
         }
 
         return $next($request);

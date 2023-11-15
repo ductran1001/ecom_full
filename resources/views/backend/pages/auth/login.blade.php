@@ -1,62 +1,73 @@
-@extends('backend.base.main')
+@extends('backend.pages.auth.base_auth')
+@section('title_page','INSPINIA | Login')
 @section('body')
-    <main class="d-flex w-100">
-        <div class="container d-flex flex-column">
-            <div class="row vh-100">
-                <div class="col-sm-10 col-md-8 col-lg-4 mx-auto d-table h-100">
-                    <div class="d-table-cell align-middle">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="m-sm-4">
-                                    <div class="text-center">
-                                        <img src="{{ asset('backend/img/avatar.jpg') }}" alt="Charles Hall"
-                                            class="img-fluid rounded-circle" width="132" height="132" />
-                                    </div>
-                                    <form id="ajax_form" replace='{{ route('get.admin.home') }}'
-                                        action="{{ route('post.admin.login') }}" method="POST">
-                                        @csrf
-                                        <div class="mb-3 form-wrapper">
-                                            <label class="form-label">Địa chỉ email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email"
-                                                id="email" placeholder="Nhập địa chỉ email" />
-                                            <span class="invalid-feedback"></span>
-                                        </div>
-                                        <div class="mb-3 form-wrapper">
-                                            <label class="form-label">Mật khẩu</label>
-                                            <input class="form-control form-control-lg" autocomplete="off" type="password"
-                                                id="password" name="password" placeholder="Nhập mật khẩu" />
-                                            <span class="invalid-feedback"></span>
-                                            <small>
-                                                <a href={{ route('get.admin.forget_pass') }}>
-                                                    Quên mật khẩu?
-                                                </a>
-                                            </small>
-                                        </div>
-                                        <div>
-                                            <label class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="remember-me"
-                                                    name="remember-me" checked>
-                                                <span class="form-check-label">
-                                                    Ghi nhớ
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <button class="btn btn-lg btn-primary">
-                                                Đăng nhập
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+    <div class="loginColumns animated fadeInDown">
+        <div class="row">
 
-                    </div>
+            <div class="col-md-6">
+                <h2 class="font-bold">Welcome to IN+</h2>
+
+                <p>
+                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app
+                    views.
+                </p>
+
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s.
+                </p>
+
+                <p>
+                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+
+                <p>
+                    <small>It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.</small>
+                </p>
+
+            </div>
+            <div class="col-md-6">
+                <div class="ibox-content">
+                    <form class="m-t" role="form" action="{{ route('post.admin.login') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <input name="email" type="email" class="form-control" placeholder="Username">
+                            @if ($errors->has('email'))
+                                <i class="help-block text-danger">{{ $errors->first('email') }}</i>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <input name="password" type="password" class="form-control" placeholder="Password">
+                            @if ($errors->has('password'))
+                                <i class="help-block text-danger">{{ $errors->first('password') }}</i>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                        <a href="#">
+                            <small>Forgot password?</small>
+                        </a>
+
+                        <p class="text-muted text-center">
+                            <small>Do not have an account?</small>
+                        </p>
+                        <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                    </form>
+                    <p class="m-t">
+                        <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
+                    </p>
                 </div>
             </div>
         </div>
-    </main>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                Copyright Example Company
+            </div>
+            <div class="col-md-6 text-right">
+                <small>© 2014-2015</small>
+            </div>
+        </div>
+    </div>
 @stop
-@push('js')
-    <script src="{{ asset('backend/js/ajax.js') }}"></script>
-@endpush

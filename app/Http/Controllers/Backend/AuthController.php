@@ -17,7 +17,7 @@ class AuthController extends Controller
 
     public function login()
     {
-        return view($this->prefix . 'login');
+        return Auth::check() ? redirect()->route('get.admin.dashboard') : view($this->prefix . 'login');
     }
 
     public function postLogin(LoginRequest $request)
@@ -25,16 +25,9 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Địa chỉ email hoặc mật khẩu không chính xác.',
-            ], 401);
+            return redirect()->back()->with('error', 'Email address or password is incorrect.');
         }
-
-        return response()->json([
-            'success' => true,
-            'msg' => 'Đăng nhập thành công'
-        ], 200);
+        return redirect()->route('get.admin.dashboard')->with('message', 'Logged in successfully.');
     }
 
     public function register()
