@@ -11,7 +11,7 @@
         ],
     ])
     <div class="wrapper wrapper-content animated fadeInRight">
-        <form class="row" role="form" method="POST" action="{{ route('category.store') }}">
+        <form id="form_ajax" class="row" role="form" method="POST" action="{{ route('category.store') }}">
             @csrf
             <div class="col-lg-7">
                 <div class="ibox float-e-margins">
@@ -20,24 +20,20 @@
                             <div class="col-sm-12">
                                 <div>
                                     <div class="form-group">
-                                        <label>
+                                        <label class="control-label">
                                             Name
                                             <span class="text-danger">(*)</span>
                                         </label>
-                                        <input name="name" id="name" type="text" placeholder="Enter Name" class="form-control">
-                                        @if ($errors->has('name'))
-                                            <i class="help-block text-danger">{{ $errors->first('name') }}</i>
-                                        @endif
+                                        <input name="name" id="name" type="text" placeholder="Enter Name"
+                                            class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label>
+                                        <label class="control-label">
                                             Slug
                                             <span class="text-danger">(*)</span>
                                         </label>
-                                        <input name="slug" id="slug" type="text" placeholder="Enter Name" class="form-control">
-                                        @if ($errors->has('slug'))
-                                            <i class="help-block text-danger">{{ $errors->first('slug') }}</i>
-                                        @endif
+                                        <input name="slug" id="slug" type="text" placeholder="Enter Name"
+                                            class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Position</label>
@@ -78,12 +74,12 @@
                                         <input name="menu" type="checkbox" class="js-menu" checked />
                                     </div>
                                     <div class="form-group d-flex gap-10 mt-24">
-                                        <button name="status" value="0" class="w-50 btn btn-w-m btn-default m-t-n-xs"
-                                            type="submit">
+                                        <button name="status" value="0"
+                                            class="btn_submit w-50 btn btn-w-m btn-default m-t-n-xs" type="button">
                                             Save Draft
                                         </button>
-                                        <button name="status" value="1" class="w-50 btn btn-w-m btn-primary m-t-n-xs"
-                                            type="submit">
+                                        <button name="status" value="1"
+                                            class="btn_submit w-50 btn btn-w-m btn-primary m-t-n-xs" type="button">
                                             Publish
                                         </button>
                                     </div>
@@ -96,3 +92,43 @@
         </form>
     </div>
 @stop
+@push('js')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(".btn_submit").click(function() {
+            let status = $(this).val();
+            let form = $("#form_ajax");
+            let url = form.attr('action');
+            let method = form.attr('method');
+            let data = form.serialize();
+
+            $.ajax({
+                type: method,
+                url: url,
+                data: data + '&' + "status=" + status,
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(data) {
+                    const errors = data.responseJSON.errors;
+                    for (const key in errors) {
+                        const errorInput = document.getElementById(key);
+                        const errorGroup = errorInput.closest('.form-group');
+
+                        errorGroup.classList.add('has-error');
+
+                        const errorElement = document.createElement('span');
+                        errorElement.textContent = errors[key][0];
+                        errorElement.classList.add('error-message');
+
+                        errorGroup.appendChild(errorElement);
+                    }
+                },
+            });
+        });
+    </script>
+@endpush

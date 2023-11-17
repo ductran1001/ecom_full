@@ -200,7 +200,10 @@
                      text: "Your file has been deleted.",
                      icon: "success"
                  });
+                 form.submit()
              }
          });
      });
  </script>
+
+ @stack('js')
