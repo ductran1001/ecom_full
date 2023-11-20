@@ -14,6 +14,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view($this->prefix . 'index');
+        return view($this->prefix . 'index', [
+            'title_page' => 'Dashboard',
+        ]);
     }
 }

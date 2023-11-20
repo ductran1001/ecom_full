@@ -3,6 +3,12 @@
 
 <head>
     @include('backend.base.head')
+    <style>
+        input:focus,
+        select:focus {
+            box-shadow: none !important
+        }
+    </style>
     @stack('css')
 </head>
 
