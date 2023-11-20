@@ -1,73 +1,52 @@
-@extends('backend.pages.auth.base_auth')
-@section('title_page','INSPINIA | Login')
+@extends('backend.pages.auth.base-auth')
 @section('body')
-    <div class="loginColumns animated fadeInDown">
-        <div class="row">
+    <div class="d-table-cell align-middle">
 
-            <div class="col-md-6">
-                <h2 class="font-bold">Welcome to IN+</h2>
+        <div class="text-center mt-4">
+            <h1 class="h2">Welcome back!</h1>
+            <p class="lead">
+                Sign in to your account to continue
+            </p>
+        </div>
 
-                <p>
-                    Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app
-                    views.
-                </p>
-
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.
-                </p>
-
-                <p>
-                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-
-                <p>
-                    <small>It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged.</small>
-                </p>
-
-            </div>
-            <div class="col-md-6">
-                <div class="ibox-content">
-                    <form class="m-t" role="form" action="{{ route('post.admin.login') }}" method="POST">
+        <div class="card">
+            <div class="card-body">
+                <div class="m-sm-3">
+                    <form id="do-form" action="{{ route('post.admin.login') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <input name="email" type="email" class="form-control" placeholder="Username">
-                            @if ($errors->has('email'))
-                                <i class="help-block text-danger">{{ $errors->first('email') }}</i>
-                            @endif
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" class="form-control form-control-lg" type="email" name="email"
+                                placeholder="Enter your email" />
                         </div>
-                        <div class="form-group">
-                            <input name="password" type="password" class="form-control" placeholder="Password">
-                            @if ($errors->has('password'))
-                                <i class="help-block text-danger">{{ $errors->first('password') }}</i>
-                            @endif
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" class="form-control form-control-lg" type="password" name="password"
+                                placeholder="Enter your password" />
                         </div>
-                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-
-                        <a href="#">
-                            <small>Forgot password?</small>
-                        </a>
-
-                        <p class="text-muted text-center">
-                            <small>Do not have an account?</small>
-                        </p>
-                        <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>
+                        <div>
+                            <div class="form-check align-items-center">
+                                <input id="customControlInline" type="checkbox" class="form-check-input" value="remember-me"
+                                    name="remember-me" checked>
+                                <label class="form-check-label text-small" for="customControlInline">Remember me</label>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button class="btn btn-lg btn-primary">Sign in</button>
+                        </div>
                     </form>
-                    <p class="m-t">
-                        <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small>
-                    </p>
                 </div>
             </div>
         </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-6">
-                Copyright Example Company
-            </div>
-            <div class="col-md-6 text-right">
-                <small>© 2014-2015</small>
-            </div>
+        <div class="text-center mb-3">
+            Don't have an account? <a href="pages-sign-up.html">Sign up</a>
         </div>
     </div>
 @stop
+
+@push('js')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="{{ asset('backend/assets/js/toastr-options.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/do-form.js') }}"></script>
+@endpush

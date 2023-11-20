@@ -1,20 +1,26 @@
-
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		@include('frontend.base.head')
-    </head>
-	<body>
-        @include('frontend.base.header')
+<html class="no-js" lang="zxx">
 
-        @include('frontend.base.navigation')
+<head>
+    @include('frontend.base.head')
 
-		@yield('body')
+    @stack('css')
+</head>
 
-        @include('frontend.base.newsletter')
+<body>
+    @include('frontend.base.preloader')
 
-		@include('frontend.base.footer')
+    @include('frontend.base.header')
 
-        @include('frontend.base.script')
-	</body>
+    @yield('body')
+    
+    @include('frontend.base.shipping-info')
+
+    @include('frontend.base.footer')
+
+    @include('frontend.base.script')
+
+    @stack('js')
+</body>
+
 </html>

@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    protected $prefix = 'frontend.pages.';
+    protected $prefix = 'frontend.pages.home.';
     public function __construct()
     {
 
     }
     public function index()
     {
-        return view($this->prefix . 'home');
+        return view($this->prefix . 'index');
     }
 }

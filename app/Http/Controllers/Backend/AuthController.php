@@ -17,7 +17,9 @@ class AuthController extends Controller
 
     public function login()
     {
-        return Auth::check() ? redirect()->route('get.admin.dashboard') : view($this->prefix . 'login');
+        return Auth::check() ? redirect()->route('get.admin.dashboard') : view($this->prefix . 'login', [
+            'title_page' => 'Sign in',
+        ]);
     }
 
     public function postLogin(LoginRequest $request)
@@ -25,14 +27,22 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (!Auth::attempt($credentials)) {
-            return redirect()->back()->with('error', 'Email address or password is incorrect.');
+            return response()->json([
+                "status" => false,
+                'msg' => 'Email address or password is incorrect.'
+            ], 500);
         }
-        return redirect()->route('get.admin.dashboard')->with('message', 'Logged in successfully.');
+        return response()->json([
+            "status" => true,
+            'msg' => 'Logged in successfully.'
+        ]);
     }
 
     public function register()
     {
-        return view($this->prefix . 'register');
+        return view($this->prefix . 'register', [
+            'title_page' => 'Register',
+        ]);
     }
 
     public function forget()

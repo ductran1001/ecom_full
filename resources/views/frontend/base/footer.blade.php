@@ -1,81 +1,149 @@
-<footer id="footer">
-    <div class="section">
+<footer class="footer">
+    <!-- Start Footer Top -->
+    <div class="footer-top">
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-xs-6">
-                    <div class="footer">
-                        <h3 class="footer-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                            <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
-                        </ul>
+            <div class="inner-content">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-12">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <img src="{{ asset('frontend/assets/images/logo/white-logo.svg') }}" alt="#">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-12">
+                        <div class="footer-newsletter">
+                            <h4 class="title">
+                                Subscribe to our Newsletter
+                                <span>Get all the latest information, Sales and Offers.</span>
+                            </h4>
+                            <div class="newsletter-form-head">
+                                <form action="#" method="get" target="_blank" class="newsletter-form">
+                                    <input name="EMAIL" placeholder="Email address here..." type="email">
+                                    <div class="button">
+                                        <button class="btn">Subscribe<span class="dir-part"></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-xs-6">
-                    <div class="footer">
-                        <h3 class="footer-title">Categories</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">Hot deals</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Cameras</a></li>
-                            <li><a href="#">Accessories</a></li>
-                        </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Top -->
+    <!-- Start Footer Middle -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="bottom-inner">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-contact">
+                            <h3>Get In Touch With Us</h3>
+                            <p class="phone">Phone: +1 (900) 33 169 7720</p>
+                            <ul>
+                                <li><span>Monday-Friday: </span> 9.00 am - 8.00 pm</li>
+                                <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
+                            </ul>
+                            <p class="mail">
+                                <a href="mailto:support@shopgrids.com">support@shopgrids.com</a>
+                            </p>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer our-app">
+                            <h3>Our Mobile App</h3>
+                            <ul class="app-btn">
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-apple"></i>
+                                        <span class="small-title">Download on the</span>
+                                        <span class="big-title">App Store</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-play-store"></i>
+                                        <span class="small-title">Download on the</span>
+                                        <span class="big-title">Google Play</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-link">
+                            <h3>Information</h3>
+                            <ul>
+                                <li><a href="javascript:void(0)">About Us</a></li>
+                                <li><a href="javascript:void(0)">Contact Us</a></li>
+                                <li><a href="javascript:void(0)">Downloads</a></li>
+                                <li><a href="javascript:void(0)">Sitemap</a></li>
+                                <li><a href="javascript:void(0)">FAQs Page</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer f-link">
+                            <h3>Shop Departments</h3>
+                            <ul>
+                                <li><a href="javascript:void(0)">Computers & Accessories</a></li>
+                                <li><a href="javascript:void(0)">Smartphones & Tablets</a></li>
+                                <li><a href="javascript:void(0)">TV, Video & Audio</a></li>
+                                <li><a href="javascript:void(0)">Cameras, Photo & Video</a></li>
+                                <li><a href="javascript:void(0)">Headphones</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
                     </div>
                 </div>
-
-                <div class="clearfix visible-xs"></div>
-
-                <div class="col-md-3 col-xs-6">
-                    <div class="footer">
-                        <h3 class="footer-title">Information</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Orders and Returns</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                        </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Middle -->
+    <!-- Start Footer Bottom -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="inner-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-12">
+                        <div class="payment-gateway">
+                            <span>We Accept:</span>
+                            <img src="{{ asset('frontend/assets/images/footer/credit-cards-footer.png') }}"
+                                alt="#">
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-3 col-xs-6">
-                    <div class="footer">
-                        <h3 class="footer-title">Service</h3>
-                        <ul class="footer-links">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">View Cart</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Track My Order</a></li>
-                            <li><a href="#">Help</a></li>
+                    <div class="col-lg-4 col-12">
+                        <div class="copyright">
+                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow"
+                                    target="_blank">GrayGrids</a></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <ul class="socila">
+                            <li>
+                                <span>Follow Us On:</span>
+                            </li>
+                            <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
+                            <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="bottom-footer" class="section">
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <ul class="footer-payments">
-                        <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                        <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                        <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                    </ul>
-                    <span class="copyright">
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- End Footer Bottom -->
 </footer>
+
+<a href="#" class="scroll-top">
+    <i class="lni lni-chevron-up"></i>
+</a>
