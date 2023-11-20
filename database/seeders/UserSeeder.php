@@ -26,10 +26,10 @@ class UserSeeder extends Seeder
                 'status' => 2
             ],
             [
-                'fname' => 'customer',
-                'username' => 'Customer',
-                'email' => 'customer@local.com',
-                'password' => Hash::make('customer'),
+                'fname' => 'member',
+                'username' => 'Member',
+                'email' => 'member@local.com',
+                'password' => Hash::make('member'),
                 'role' => 1,
                 'status' => 2
             ]

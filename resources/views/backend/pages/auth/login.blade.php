@@ -1,5 +1,5 @@
 @extends('backend.pages.auth.base-auth')
-@section('body')
+@section('body_page')
     <div class="d-table-cell align-middle">
 
         <div class="text-center mt-4">
@@ -12,7 +12,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="m-sm-3">
-                    <form id="do-form" action="{{ route('post.admin.login') }}" method="POST">
+                    <form id="do-form" action="{{ route('post.admin.login') }}" method="POST"
+                        redirect="{{ route('get.admin.dashboard') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
@@ -49,4 +50,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="{{ asset('backend/assets/js/toastr-options.js') }}"></script>
     <script src="{{ asset('backend/assets/js/do-form.js') }}"></script>
+    @if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}');
+        </script>
+    @endif
 @endpush

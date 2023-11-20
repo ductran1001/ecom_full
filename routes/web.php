@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/banner', BackendController\BannerController::class);
         Route::resource('/customer', BackendController\CustomerController::class);
         Route::resource('/setting', BackendController\SettingController::class);
+        Route::resource('/profile', BackendController\SettingController::class);
     });
 });
 

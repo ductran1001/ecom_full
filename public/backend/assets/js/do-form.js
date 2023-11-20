@@ -4,6 +4,7 @@ $(function () {
         e.preventDefault();
         let url = doForm.attr('action');
         let type = doForm.attr('method');
+        let redirect = doForm.attr('redirect');
         $(".error-message").remove();
         let elements = $(".text-danger, .is-invalid");
         elements.removeClass("text-danger").removeClass("is-invalid");
@@ -12,7 +13,8 @@ $(function () {
             type: type,
             data: doForm.serialize(),
             success: function (data) {
-                console.log(data);
+                window.location.href = redirect;
+                toastr.success(data.msg);
             },
             error: function (data) {
                 if (data.responseJSON.msg) {

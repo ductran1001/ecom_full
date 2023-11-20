@@ -1,5 +1,5 @@
 @extends('backend.pages.auth.base-auth')
-@section('body')
+@section('body_page')
     <div class="d-table-cell align-middle">
 
         <div class="text-center mt-4">
