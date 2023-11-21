@@ -77,6 +77,9 @@
                             <select id="parent_id" name="parent_id" class="form-control">
                                 <option selected>[Choose Parent]</option>
                                 <option value="0">None</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
@@ -95,15 +98,3 @@
         </form>
     </div>
 @stop
-
-@push('js')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ asset('backend/assets/js/toastr-options.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/do-form.js') }}"></script>
-    @if (session('error'))
-        <script>
-            toastr.error('{{ session('error') }}');
-        </script>
-    @endif
-@endpush

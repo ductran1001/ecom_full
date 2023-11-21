@@ -7,43 +7,39 @@
         </div>
         <div class="row">
             <div class="col-12 d-flex">
-                <div class="card flex-fill">
-                    <div class="card-header">
-
-                        <h5 class="card-title mb-0">Latest Projects</h5>
-                    </div>
-                    <table class="table table-hover my-0">
+                <div class="card flex-fill card-table">
+                    <table id="zero_config" class="table table-hover my-0">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th class="d-none d-xl-table-cell">Start Date</th>
-                                <th class="d-none d-xl-table-cell">End Date</th>
+                                <th>Parent category</th>
+                                <th>Created at</th>
                                 <th>Status</th>
-                                <th class="d-none d-md-table-cell">Assignee</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Project Fireball</td>
-                                <td class="d-none d-xl-table-cell">01/01/2023</td>
-                                <td class="d-none d-xl-table-cell">31/06/2023</td>
-                                <td><span class="badge bg-danger">Cancelled</span></td>
-                                <td class="d-none d-md-table-cell">William Harris</td>
-                            </tr>
-                            <tr>
-                                <td>Project Hades</td>
-                                <td class="d-none d-xl-table-cell">01/01/2023</td>
-                                <td class="d-none d-xl-table-cell">31/06/2023</td>
-                                <td><span class="badge bg-success">Done</span></td>
-                                <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                            </tr>
-                            <tr>
-                                <td>Project Nitro</td>
-                                <td class="d-none d-xl-table-cell">01/01/2023</td>
-                                <td class="d-none d-xl-table-cell">31/06/2023</td>
-                                <td><span class="badge bg-warning">In progress</span></td>
-                                <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                            </tr>
+                            @foreach ($categories as $category)
+                                <tr>
+                                    <td>{{ $category['name'] }}</td>
+                                    <td>{{ $category['parent_id'] == 0 ? '___' : $category['parent_id'] }}</td>
+                                    <td>{{ $category['created_at'] }}</td>
+                                    <td>
+                                        <span class="badge {{ $category['status'] == 1 ? 'bg-success' : 'bg-warning' }}">
+                                            {{ $category['status'] == 1 ? 'active' : 'in-active' }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('category.edit', $category['id']) }}" class="me-3">
+                                            <i class="align-middle" data-feather="edit"></i>
+                                        </a>
+                                        <a href="javascript:void(0)" id="delete-action"
+                                            data-url="{{ route('category.destroy', $category['id']) }}">
+                                            <i class="align-middle text-danger" data-feather="x-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -51,3 +47,10 @@
         </div>
     </div>
 @stop
+
+@push('js')
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+        new DataTable('#zero_config');
+    </script>
+@endpush

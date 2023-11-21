@@ -13,6 +13,10 @@
         .required-text {
             color: #E87882
         }
+
+        .card-table {
+            padding: 24px 20px;
+        }
     </style>
     @stack('css')
 </head>
