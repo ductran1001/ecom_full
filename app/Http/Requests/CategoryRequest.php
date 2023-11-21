@@ -25,7 +25,16 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'position' => 'required|integer',
+            'parent_id' => 'required|integer',
             'slug' => 'required|string|max:255|unique:categories,slug,' . request()->route('category'),
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'parent_id.integer' => 'The parent field is required.'
         ];
     }
 }

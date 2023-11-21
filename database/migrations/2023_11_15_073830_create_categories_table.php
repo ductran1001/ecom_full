@@ -16,12 +16,11 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('short_description')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_title')->nullable();
             $table->integer('parent_id')->default(0);
             $table->integer('position')->default(0);
-            $table->tinyInteger('menu')->default(0)->comment('0-no,1-yes');
-            $table->tinyInteger('featured')->default(0)->comment('0-no,1-yes');
             $table->tinyInteger('status')->default(0)->comment('0-no,1-yes');
             $table->timestamps();
         });

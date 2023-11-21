@@ -35,7 +35,7 @@ class AuthController extends Controller
         return response()->json([
             "status" => true,
             'msg' => 'Logged in successfully.'
-        ]);
+        ],200);
     }
 
     public function register()

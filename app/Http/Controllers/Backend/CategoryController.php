@@ -15,10 +15,9 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
         return view($this->prefix . 'index', [
             'title_page' => 'Category',
-            'categories' => $categories,
+            'categories' => Category::orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 
@@ -31,11 +30,19 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $data = $request->except('_token');
-        $data['featured'] = isset($request->featured) ? 1 : 0;
-        $data['menu'] = isset($request->menu) ? 1 : 0;
-        Category::create($data);
-        return redirect()->route('category.index')->with('success', 'Added new category successfully');
+        try {
+            Category::create($request->all());
+            return response()->json([
+                "status" => true,
+                'msg' => 'Create new successfully.'
+            ], 201);
+        } catch (\Throwable $th) {
+            dd($th);
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
     public function show($id)
     {

@@ -5,8 +5,13 @@
     @include('backend.base.head')
     <style>
         input:focus,
-        select:focus {
+        select:focus,
+        textarea:focus {
             box-shadow: none !important
+        }
+
+        .required-text {
+            color: #E87882
         }
     </style>
     @stack('css')

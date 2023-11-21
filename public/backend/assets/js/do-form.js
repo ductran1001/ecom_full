@@ -8,6 +8,11 @@ $(function () {
         $(".error-message").remove();
         let elements = $(".text-danger, .is-invalid");
         elements.removeClass("text-danger").removeClass("is-invalid");
+        let status = doForm.find("button:focus");
+        if (status.val()) {
+            doForm.append(`<input type="hidden" name="status" value="${status.val()}" />`);
+        }
+
         $.ajax({
             url: url,
             type: type,
@@ -28,7 +33,7 @@ $(function () {
                         let inputId = '#' + error;
                         let errorMessage = errors[error];
                         let labelId = `label[for="${error}"]`;
-                        let html = `<p class="text-danger error-message">${errorMessage}</p>`;
+                        let html = `<i class="text-danger error-message">${errorMessage}</i>`;
 
                         $(inputId).parent().append(html);
                         $(labelId).addClass('text-danger');
