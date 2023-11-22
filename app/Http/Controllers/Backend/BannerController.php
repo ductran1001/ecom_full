@@ -3,83 +3,97 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\BannerRequest;
+use App\Models\Banner;
 
 class BannerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $prefix = 'backend.pages.banner.';
+
+    public function __construct()
+    {
+    }
     public function index()
     {
-        //
+        $banners = Banner::orderBy('created_at', 'desc')->paginate(10) ?? [];
+        return view($this->prefix . 'index', [
+            'title_page' => 'Banner',
+            'banners' => $banners,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $banner = Banner::orderBy('created_at', 'desc')->get() ?? [];
+        return view($this->prefix . 'create', [
+            'title_page' => 'Create Banner',
+            'banner' => $banner,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BannerRequest $request)
     {
-        //
+        try {
+            Banner::create($request->all());
+            return response()->json([
+                "status" => true,
+                'msg' => 'Create new successfully.'
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $banner = Banner::findOrFail($id);
+        $banners = Banner::orderBy('created_at', 'desc')->get() ?? [];
+        return view($this->prefix . 'edit', [
+            'title_page' => 'Update banner',
+            'banner' => $banner,
+            'banners' => $banners,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(BannerRequest $request, $id)
     {
-        //
+        try {
+            $banner = Banner::findOrFail($id);
+            $banner->update($request->all());
+            return response()->json([
+                "status" => true,
+                'msg' => 'Banner updated successfully.'
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        try {
+            $banner = Banner::findOrFail($id);
+            $banner->delete();
+            return response()->json([
+                "status" => true,
+                'msg' => 'Banner deleted successfully.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
 }

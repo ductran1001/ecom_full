@@ -20,6 +20,12 @@ return [
         "nav_active" => "category",
     ],
     [
+        "nav_name" => "Banner",
+        "nav_route" => "banner.index",
+        "nav_icon" => "image",
+        "nav_active" => "banner",
+    ],
+    [
         "nav_name" => "Logout",
         "nav_route" => "get.admin.logout",
         "nav_icon" => "log-out",
