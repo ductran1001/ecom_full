@@ -14,7 +14,7 @@
             color: #E87882
         }
 
-        #data_table_wrapper {
+        .card-table {
             padding: 24px 20px;
         }
     </style>

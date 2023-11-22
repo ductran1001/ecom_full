@@ -38,7 +38,6 @@ class CategoryController extends Controller
                 'msg' => 'Create new successfully.'
             ], 201);
         } catch (\Throwable $th) {
-            dd($th);
             return response()->json([
                 "status" => false,
                 'msg' => 'Something went wrong.'
@@ -72,8 +71,18 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect()->route('category.index')->with('success', 'Category deleted successfully');
+        try {
+            $category = Category::findOrFail($id);
+            $category->delete();
+            return response()->json([
+                "status" => true,
+                'msg' => 'Category deleted successfully.'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
 }

@@ -17,17 +17,17 @@ $(function () {
             url: url,
             type: type,
             data: doForm.serialize(),
-            success: function (data) {
+            success: function (response) {
                 window.location.href = redirect;
-                toastr.success(data.msg);
+                toastr.success(response.msg);
             },
-            error: function (data) {
-                if (data.responseJSON.msg) {
-                    toastr.error(data.responseJSON.msg);
+            error: function (response) {
+                if (response.responseJSON.msg) {
+                    toastr.error(response.responseJSON.msg);
                 }
 
-                if (data.responseJSON.errors) {
-                    let errors = data.responseJSON.errors;
+                if (response.responseJSON.errors) {
+                    let errors = response.responseJSON.errors;
 
                     for (let error in errors) {
                         let inputId = '#' + error;
@@ -42,5 +42,34 @@ $(function () {
                 }
             }
         });
+    });
+});
+
+
+$(document).ready(function () {
+    $('body').on('click', '#delete-action', function () {
+        let url = $(this).data('url');
+        let tr = $(this).closest('tr');
+        let table = $('#zero_config').DataTable();
+
+        $.ajax({
+            url: url,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'DELETE',
+            dataType: 'json',
+            caches: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                toastr.success(response.msg);
+                table.row(tr).remove().draw(false);
+            },
+            error: function (response) {
+                toastr.error(response.responseJSON.msg);
+            }
+        });
+
     });
 });

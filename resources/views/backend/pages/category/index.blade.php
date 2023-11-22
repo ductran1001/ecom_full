@@ -7,31 +7,34 @@
         </div>
         <div class="row">
             <div class="col-12 d-flex">
-                <div class="card flex-fill">
-                    <table id="data_table" class="table table-striped my-0">
+                <div class="card flex-fill card-table">
+                    <table id="zero_config" class="table table-hover my-0">
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th class="d-none d-xl-table-cell">Created At</th>
+                                <th>Parent category</th>
+                                <th>Created at</th>
                                 <th>Status</th>
-                                <th class="d-none d-md-table-cell">Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
-                                    <td>{{ $category->name }}</td>
-                                    <td class="d-none d-xl-table-cell">{{ $category->created_at }}</td>
+                                    <td>{{ $category['name'] }}</td>
+                                    <td>{{ $category['parent_id'] == 0 ? '___' : $category['parent_id'] }}</td>
+                                    <td>{{ $category['created_at'] }}</td>
                                     <td>
-                                        <span class="badge {{ $category->status == 1 ? 'bg-success' : 'bg-warning' }}">
-                                            {{ $category->status == 1 ? 'active' : 'in-active' }}
+                                        <span class="badge {{ $category['status'] == 1 ? 'bg-success' : 'bg-warning' }}">
+                                            {{ $category['status'] == 1 ? 'active' : 'in-active' }}
                                         </span>
                                     </td>
-                                    <td class="d-none d-md-table-cell">
-                                        <a href="{{ route('category.edit', $category->id) }}" class="me-2">
+                                    <td>
+                                        <a href="{{ route('category.edit', $category['id']) }}" class="me-3">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </a>
-                                        <a href="">
+                                        <a href="javascript:void(0)" id="delete-action"
+                                            data-url="{{ route('category.destroy', $category['id']) }}">
                                             <i class="align-middle text-danger" data-feather="x-circle"></i>
                                         </a>
                                     </td>
@@ -46,11 +49,8 @@
 @stop
 
 @push('js')
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-
     <script>
-        new DataTable('#data_table');
+        new DataTable('#zero_config');
     </script>
 @endpush

@@ -12,7 +12,8 @@
             @foreach (config('nav') as $item)
                 <li class="sidebar-item {{ str_contains(url()->current(), $item['nav_active']) ? 'active' : '' }}">
                     <a class='sidebar-link' href='{{ route($item['nav_route']) }}'>
-                        <i class="align-middle" data-feather="{{ $item['nav_icon'] }}"></i> <span class="align-middle">
+                        <i class="align-middle" data-feather="{{ $item['nav_icon'] }}"></i>
+                        <span class="align-middle">
                             {{ $item['nav_name'] }}
                         </span>
                     </a>
