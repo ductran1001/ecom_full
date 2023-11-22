@@ -13,6 +13,10 @@
         .required-text {
             color: #E87882
         }
+
+        #data_table_wrapper {
+            padding: 24px 20px;
+        }
     </style>
     @stack('css')
 </head>

@@ -77,6 +77,9 @@
                             <select id="parent_id" name="parent_id" class="form-control">
                                 <option selected>[Choose Parent]</option>
                                 <option value="0">None</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>

@@ -10,6 +10,8 @@
 <link rel="shortcut icon" href="{{ asset('backend/assets/img/icons/icon-48x48.png') }}" />
 
 <title>{{ $title_page ?? 'Dashboard' }} | Admin CMS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
 <link href="{{ asset('backend/assets/css/app.css') }}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">

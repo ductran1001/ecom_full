@@ -17,7 +17,7 @@ class CategoryController extends Controller
     {
         return view($this->prefix . 'index', [
             'title_page' => 'Category',
-            'categories' => Category::orderBy('created_at', 'desc')->paginate(10),
+            'categories' => Category::orderBy('created_at', 'desc')->paginate(10) ?? [],
         ]);
     }
 
@@ -25,6 +25,7 @@ class CategoryController extends Controller
     {
         return view($this->prefix . 'create', [
             'title_page' => 'Create Category',
+            'categories' => Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [],
         ]);
     }
 
