@@ -15,17 +15,19 @@ class CategoryController extends Controller
     }
     public function index()
     {
+        $categories = Category::orderBy('created_at', 'desc')->with('parent')->paginate(10) ?? [];
         return view($this->prefix . 'index', [
             'title_page' => 'Category',
-            'categories' => Category::orderBy('created_at', 'desc')->paginate(10) ?? [],
+            'categories' => $categories,
         ]);
     }
 
     public function create()
     {
+        $categories = Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'create', [
             'title_page' => 'Create Category',
-            'categories' => Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [],
+            'categories' => $categories,
         ]);
     }
 
@@ -52,21 +54,30 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
+        $categories = Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'edit', [
-            'title_page' => 'Category',
+            'title_page' => 'Update Category',
             'category' => $category,
+            'categories' => $categories,
         ]);
     }
 
 
     public function update(CategoryRequest $request, $id)
     {
-        $category = Category::findOrFail($id);
-        $data = $request->except('_token');
-        $data['featured'] = isset($request->featured) ? 1 : 0;
-        $data['menu'] = isset($request->menu) ? 1 : 0;
-        $category->update($data);
-        return redirect()->route('category.index')->with('success', 'Category updated successfully');
+        try {
+            $category = Category::findOrFail($id);
+            $category->update($request->all());
+            return response()->json([
+                "status" => true,
+                'msg' => 'Category updated successfully.'
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Something went wrong.'
+            ], 500);
+        }
     }
 
     public function destroy($id)

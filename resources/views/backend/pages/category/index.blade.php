@@ -12,17 +12,20 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Position</th>
                                 <th>Parent category</th>
                                 <th>Created at</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ $category['name'] }}</td>
-                                    <td>{{ $category['parent_id'] == 0 ? '___' : $category['parent_id'] }}</td>
+                                    <td>{{ $category['position'] }}</td>
+                                    <td>{{ $category['parent'] == null ? '___' : $category['parent']['name'] }}</td>
                                     <td>{{ $category['created_at'] }}</td>
                                     <td>
                                         <span class="badge {{ $category['status'] == 1 ? 'bg-success' : 'bg-warning' }}">

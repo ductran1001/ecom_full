@@ -17,6 +17,10 @@
         .card-table {
             padding: 24px 20px;
         }
+
+        a:hover {
+            text-decoration: none;
+        }
     </style>
     @stack('css')
 </head>
