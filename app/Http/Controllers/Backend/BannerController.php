@@ -25,7 +25,6 @@ class BannerController extends Controller
     {
         return view($this->prefix . 'create', [
             'title_page' => 'Create Banner',
-            'banner' => Banner::orderByDesc('created_at')->get(),
         ]);
     }
 
