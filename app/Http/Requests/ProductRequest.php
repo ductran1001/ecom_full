@@ -26,6 +26,9 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'position' => 'required|integer',
+            'price' => 'required|integer',
+            'photo' => 'required|string',
+            'abums' => 'required|string',
             'slug' => 'required|string|max:255|unique:products,slug,' . request()->route('product'),
         ];
     }

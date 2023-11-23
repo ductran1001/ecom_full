@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('photo');
             $table->string('abums');
             $table->integer('price');
-            $table->integer('sale');
+            $table->integer('sale')->default(0);
             $table->string('short_description')->nullable();
             $table->string('content')->nullable();
             $table->string('meta_description')->nullable();

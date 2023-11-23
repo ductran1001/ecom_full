@@ -13,3 +13,4 @@
         toastr.error('{{ session('error') }}');
     </script>
 @endif
+<script src="{{ asset('backend/assets/js/parseInt.js') }}"></script>

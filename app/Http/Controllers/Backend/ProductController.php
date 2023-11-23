@@ -25,10 +25,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $product = Product::orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'create', [
             'title_page' => 'Create Product',
-            'product' => $product,
         ]);
     }
 
@@ -52,6 +50,7 @@ class ProductController extends Controller
                 'msg' => 'Create new successfully.'
             ], 201);
         } catch (\Throwable $th) {
+            dd($th);
             return response()->json([
                 "status" => false,
                 'msg' => 'Something went wrong.'
