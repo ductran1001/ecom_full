@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BannerRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,7 @@ class BannerRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'position' => 'required|integer',
-            'photo' => 'required|string',
-            'slug' => 'required|string|max:255|unique:banners,slug,' . request()->route('banner'),
+            'slug' => 'required|string|max:255|unique:products,slug,' . request()->route('product'),
         ];
     }
 

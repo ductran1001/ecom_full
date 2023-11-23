@@ -79,11 +79,20 @@
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
                                         </span>
-                                        <input value="{{ $banner['photo'] }}" id="thumbnail" class="form-control"
+                                        <input readonly value="{{ $banner['photo'] }}" id="thumbnail" class="form-control"
                                             type="text" name="photo">
                                     </div>
-
-                                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                                    <div id="photo"></div>
+                                    @if (isset($banner['photo']))
+                                        <div id="holder" style="margin-top:15px;max-height:100px;">
+                                            <img src="{{ $banner['photo'] }}" alt=""
+                                                style="
+                                            width: 80px;
+                                            height: 80px;
+                                            object-fit: cover;
+                                        ">
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

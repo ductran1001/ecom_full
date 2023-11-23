@@ -26,6 +26,12 @@ return [
         "nav_active" => "banner",
     ],
     [
+        "nav_name" => "Product",
+        "nav_route" => "product.index",
+        "nav_icon" => "grid",
+        "nav_active" => "product",
+    ],
+    [
         "nav_name" => "Logout",
         "nav_route" => "get.admin.logout",
         "nav_icon" => "log-out",

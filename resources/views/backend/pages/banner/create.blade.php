@@ -79,8 +79,9 @@
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
                                         </span>
-                                        <input id="thumbnail" class="form-control" type="text" name="photo">
+                                        <input readonly id="thumbnail" class="form-control" type="text" name="photo">
                                     </div>
+                                    <div id="photo"></div>
                                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                                 </div>
                             </div>

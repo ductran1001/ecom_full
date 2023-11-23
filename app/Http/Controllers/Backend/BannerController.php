@@ -5,34 +5,42 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 class BannerController extends Controller
 {
-    protected $prefix = 'backend.pages.banner.';
+    protected string $prefix = 'backend.pages.banner.';
 
-    public function __construct()
+    public function index(): View
     {
-    }
-    public function index()
-    {
-        $banners = Banner::orderBy('created_at', 'desc')->paginate(10) ?? [];
+        $banners = Banner::orderByDesc('created_at')->paginate(10);
         return view($this->prefix . 'index', [
             'title_page' => 'Banner',
             'banners' => $banners,
         ]);
     }
 
-    public function create()
+    public function create(): View
     {
-        $banner = Banner::orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'create', [
             'title_page' => 'Create Banner',
-            'banner' => $banner,
+            'banner' => Banner::orderByDesc('created_at')->get(),
         ]);
     }
 
-    public function store(BannerRequest $request)
+    public function store(BannerRequest $request): JsonResponse
     {
+        $photos = $request->photo;
+        $count = count(explode(',', $photos));
+
+        if ($count >= 2) {
+            return response()->json([
+                "status" => false,
+                'msg' => 'Please provide only one photo.'
+            ], 400);
+        }
+
         try {
             Banner::create($request->all());
             return response()->json([
@@ -46,27 +54,33 @@ class BannerController extends Controller
             ], 500);
         }
     }
-    public function show($id)
-    {
-        //
-    }
 
-    public function edit($id)
+    public function edit($id): View
     {
         $banner = Banner::findOrFail($id);
-        $banners = Banner::orderBy('created_at', 'desc')->get() ?? [];
+
         return view($this->prefix . 'edit', [
             'title_page' => 'Update banner',
             'banner' => $banner,
-            'banners' => $banners,
         ]);
     }
 
-
-    public function update(BannerRequest $request, $id)
+    public function update(BannerRequest $request, $id): JsonResponse
     {
         try {
             $banner = Banner::findOrFail($id);
+            $photos = $request->photo;
+
+            if ($photos) {
+                $count = count(explode(',', $photos));
+                if ($count >= 2) {
+                    return response()->json([
+                        "status" => false,
+                        'msg' => 'Please provide only one photo.'
+                    ], 400);
+                }
+            }
+
             $banner->update($request->all());
             return response()->json([
                 "status" => true,
@@ -80,7 +94,7 @@ class BannerController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         try {
             $banner = Banner::findOrFail($id);
