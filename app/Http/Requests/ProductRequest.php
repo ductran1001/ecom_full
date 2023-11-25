@@ -26,9 +26,10 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'position' => 'required|integer',
-            'price' => 'required|integer',
-            'photo' => 'required|string',
+            'price' => 'required|integer|gt:0',
+            'thumbnail' => 'required|string',
             'abums' => 'required|string',
+            'category_id' => 'required|integer',
             'slug' => 'required|string|max:255|unique:products,slug,' . request()->route('product'),
         ];
     }
@@ -36,7 +37,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'category_id.integer' => 'The category field is required.'
         ];
     }
 }

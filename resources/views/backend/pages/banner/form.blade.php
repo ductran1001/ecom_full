@@ -80,7 +80,6 @@
                                 <input readonly value="{{ isset($banner['photo']) ? $banner['photo'] : '' }}"
                                     id="thumbnail" class="form-control" type="text" name="photo">
                             </div>
-                            <div id="photo"></div>
                             @if (isset($banner['photo']))
                                 <div id="holder" style="margin-top:15px;max-height:100px;">
                                     <img src="{{ $banner['photo'] }}" alt=""

@@ -26,7 +26,7 @@ class BannerRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'position' => 'required|integer',
-            'photo' => 'required|string',
+            'thumbnail' => 'required|string',
             'slug' => 'required|string|max:255|unique:banners,slug,' . request()->route('banner'),
         ];
     }

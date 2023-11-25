@@ -25,7 +25,7 @@
                                 <tr>
                                     <td>{{ $banner['name'] }}</td>
                                     <td>
-                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $banner['photo'] }}"
+                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $banner['thumbnail'] }}"
                                             alt="{{ $banner['name'] }}">
                                     </td>
                                     <td>{{ $banner['position'] }}</td>

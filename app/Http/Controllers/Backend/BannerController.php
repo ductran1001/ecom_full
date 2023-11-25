@@ -30,13 +30,13 @@ class BannerController extends Controller
 
     public function store(BannerRequest $request): JsonResponse
     {
-        $photos = $request->photo;
-        $count = count(explode(',', $photos));
+        $thumbnails = $request->thumbnail;
+        $count = count(explode(',', $thumbnails));
 
         if ($count >= 2) {
             return response()->json([
                 "status" => false,
-                'msg' => 'Please provide only one photo.'
+                'msg' => 'Please provide only one thumbnail.'
             ], 400);
         }
 

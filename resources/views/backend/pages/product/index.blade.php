@@ -13,6 +13,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Photo</th>
+                                <th>Category</th>
                                 <th>Position</th>
                                 <th>Created at</th>
                                 <th>Status</th>
@@ -25,9 +26,10 @@
                                 <tr>
                                     <td>{{ $product['name'] }}</td>
                                     <td>
-                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $product['photo'] }}"
+                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $product['thumbnail'] }}"
                                             alt="{{ $product['name'] }}">
                                     </td>
+                                    <td>{{ $product->category->name }}</td>
                                     <td>{{ $product['position'] }}</td>
                                     <td>{{ $product['created_at'] }}</td>
                                     <td>

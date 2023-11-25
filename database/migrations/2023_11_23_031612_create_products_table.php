@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('photo');
+            $table->string('thumbnail');
             $table->string('abums');
             $table->integer('price');
             $table->integer('sale')->default(0);

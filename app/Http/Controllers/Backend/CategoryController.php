@@ -54,7 +54,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        $categories = Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [];
+        $categories = Category::where('parent_id', 0)->where('id', '!=', $id)->orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'edit', [
             'title_page' => 'Update Category',
             'category' => $category,

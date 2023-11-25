@@ -20,4 +20,21 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
+
+    public static function getCategoryTree($parentId = 0, $level = 0)
+    {
+        $result = [];
+
+        $categories = Category::where('parent_id', $parentId)->orderBy('created_at', 'desc')->get();
+
+        foreach ($categories as $category) {
+            $category->depth = $level;
+            $result[] = $category;
+
+            $children = self::getCategoryTree($category->id, $level + 1);
+            $result = array_merge($result, $children);
+        }
+
+        return $result;
+    }
 }

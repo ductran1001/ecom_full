@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -16,7 +16,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10) ?? [];
+        $products = Product::with('category')->orderBy('created_at', 'desc')->paginate(10) ?? [];
         return view($this->prefix . 'index', [
             'title_page' => 'Products',
             'products' => $products,
@@ -25,21 +25,24 @@ class ProductController extends Controller
 
     public function create()
     {
+        $categories = Category::getCategoryTree();
+   
         return view($this->prefix . 'create', [
             'title_page' => 'Create Product',
+            'categories' => $categories,
         ]);
     }
 
     public function store(ProductRequest $request)
     {
-        $photos = $request->photo;
+        $thumbnails = $request->thumbnail;
 
-        $count = count(explode(',', $photos));
+        $count = count(explode(',', $thumbnails));
 
         if ($count >= 2) {
             return response()->json([
                 "status" => false,
-                'msg' => 'Please provide only one photo.'
+                'msg' => 'Please provide only one thumbnail.'
             ], 400);
         }
 
@@ -65,10 +68,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $categories = Category::getCategoryTree();
 
         return view($this->prefix . 'edit', [
             'title_page' => 'Update product',
             'product' => $product,
+            'categories' => $categories,
         ]);
     }
 
