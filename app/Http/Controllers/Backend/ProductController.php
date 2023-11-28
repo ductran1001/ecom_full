@@ -28,7 +28,7 @@ class ProductController extends Controller
         $categories = Category::getCategoryTree();
    
         return view($this->prefix . 'create', [
-            'title_page' => 'Create Product',
+            'title_page' => 'Create product',
             'categories' => $categories,
         ]);
     }

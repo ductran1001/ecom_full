@@ -16,7 +16,7 @@ return [
     [
         "nav_name" => "Category",
         "nav_route" => "category.index",
-        "nav_icon" => "list",
+        "nav_icon" => "menu",
         "nav_active" => "category",
     ],
     [
@@ -30,6 +30,12 @@ return [
         "nav_route" => "product.index",
         "nav_icon" => "grid",
         "nav_active" => "product",
+    ],
+    [
+        "nav_name" => "Brand",
+        "nav_route" => "brand.index",
+        "nav_icon" => "list",
+        "nav_active" => "brand",
     ],
     [
         "nav_name" => "Logout",

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class BrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,17 +25,14 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . request()->route('category'),
-            'position' => 'required|integer',
+            'slug' => 'required|string|max:255|unique:brands,slug,' . request()->route('brand'),
             'thumbnail' => 'required|string',
-            'parent_id' => 'required|integer',
         ];
     }
 
     public function messages()
     {
         return [
-            'parent_id.integer' => 'The parent field is required.'
         ];
     }
 }

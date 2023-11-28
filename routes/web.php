@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/product', BackendController\ProductController::class);
         Route::resource('/banner', BackendController\BannerController::class);
         Route::resource('/customer', BackendController\CustomerController::class);
+        Route::resource('/brand', BackendController\BrandController::class);
         Route::resource('/setting', BackendController\SettingController::class);
         Route::resource('/profile', BackendController\SettingController::class);
     });

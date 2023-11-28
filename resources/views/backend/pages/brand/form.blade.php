@@ -1,10 +1,10 @@
 @php
-    $action = isset($banner) ? route('banner.update', $banner['id']) : route('banner.store');
+    $action = isset($brand) ? route('brand.update', $brand['id']) : route('brand.store');
 @endphp
 
-<form id="do-form" class="row" action="{{ $action }}" method="POST" redirect="{{ route('banner.index') }}">
+<form id="do-form" class="row" action="{{ $action }}" method="POST" redirect="{{ route('brand.index') }}">
     @csrf
-    @isset($banner)
+    @isset($brand)
         @method('PUT')
     @endisset
     <div class="col-12 col-xl-8">
@@ -17,7 +17,7 @@
                             <span class="required-text">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <input value="{{ $banner['name'] ?? '' }}" onkeyup="ChangeToSlug();" id="name"
+                            <input value="{{ $brand['name'] ?? '' }}" onkeyup="ChangeToSlug();" id="name"
                                 name="name" type="text" class="form-control" placeholder="required">
                         </div>
                     </div>
@@ -27,17 +27,7 @@
                             <span class="required-text">(*)</span>
                         </label>
                         <div class="col-sm-9">
-                            <input value="{{ $banner['slug'] ?? '' }}" id="slug" name="slug" type="text"
-                                class="form-control" placeholder="required">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="position" class="col-form-label col-sm-3 text-sm-end">
-                            Position
-                            <span class="required-text">(*)</span>
-                        </label>
-                        <div class="col-sm-9">
-                            <input id="position" value="{{ $banner['position'] ?? 0 }}" name="position" type="number"
+                            <input value="{{ $brand['slug'] ?? '' }}" id="slug" name="slug" type="text"
                                 class="form-control" placeholder="required">
                         </div>
                     </div>
@@ -46,7 +36,7 @@
                             Short Description
                         </label>
                         <div class="col-sm-9">
-                            <textarea id="short_description" name="short_description" class="form-control" placeholder="optional" rows="3">{{ $banner['short_description'] ?? '' }}</textarea>
+                            <textarea id="short_description" name="short_description" class="form-control" placeholder="optional" rows="3">{{ $brand['short_description'] ?? '' }}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -54,7 +44,7 @@
                             Meta title
                         </label>
                         <div class="col-sm-9">
-                            <textarea id="meta_title" name="meta_title" class="form-control" placeholder="optional" rows="3">{{ $banner['meta_title'] ?? '' }}</textarea>
+                            <textarea id="meta_title" name="meta_title" class="form-control" placeholder="optional" rows="3">{{ $brand['meta_title'] ?? '' }}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -62,7 +52,7 @@
                             Meta description
                         </label>
                         <div class="col-sm-9">
-                            <textarea id="meta_description" name="meta_description" class="form-control" placeholder="optional" rows="3">{{ $banner['meta_description'] ?? '' }}</textarea>
+                            <textarea id="meta_description" name="meta_description" class="form-control" placeholder="optional" rows="3">{{ $brand['meta_description'] ?? '' }}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -78,12 +68,13 @@
                                     </a>
                                 </span>
                                 <input style="min-width: 210px;" readonly
-                                    value="{{ isset($banner['thumbnail']) ? $banner['thumbnail'] : '' }}" id="thumbnail"
+                                    value="{{ isset($brand['thumbnail']) ? $brand['thumbnail'] : '' }}" id="thumbnail"
                                     class="form-control" type="text" name="thumbnail">
                             </div>
-                            @if (isset($banner['thumbnail']))
+
+                            @if (isset($brand['thumbnail']))
                                 <div id="holder" style="margin-top:15px;max-height:100px;">
-                                    <img src="{{ $banner['thumbnail'] }}" alt=""
+                                    <img src="{{ $brand['thumbnail'] }}" alt=""
                                         style="width: 80px;height: 80px; object-fit: cover;" />
                                 </div>
                             @else

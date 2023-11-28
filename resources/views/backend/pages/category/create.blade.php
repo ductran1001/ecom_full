@@ -8,3 +8,9 @@
         @include('backend.pages.category.form')
     </div>
 @stop
+@push('js')
+    <script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
+    <script>
+        $('#lfm').filemanager('image');
+    </script>
+@endpush

@@ -14,7 +14,7 @@ class BannerController extends Controller
 
     public function index(): View
     {
-        $banners = Banner::orderByDesc('created_at')->paginate(10);
+        $banners = Banner::orderByDesc('created_at')->get();
         return view($this->prefix . 'index', [
             'title_page' => 'Banner',
             'banners' => $banners,
@@ -24,7 +24,7 @@ class BannerController extends Controller
     public function create(): View
     {
         return view($this->prefix . 'create', [
-            'title_page' => 'Create Banner',
+            'title_page' => 'Create banner',
         ]);
     }
 

@@ -2,8 +2,8 @@
 @section('body_page')
     <div class="container-fluid p-0">
         <div class="mb-3 d-flex justify-content-between align-items-center">
-            <h1 class="h3"><strong>Lists</strong> Banner </h1>
-            <a href="{{ route('banner.create') }}" class="btn btn-primary">Create New</a>
+            <h1 class="h3"><strong>Lists</strong> Brand </h1>
+            <a href="{{ route('brand.create') }}" class="btn btn-primary">Create New</a>
         </div>
         <div class="row">
             <div class="col-12 d-flex">
@@ -13,7 +13,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Thumbnail</th>
-                                <th>Position</th>
                                 <th>Created at</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -21,26 +20,25 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($banners as $banner)
+                            @foreach ($brands as $brand)
                                 <tr>
-                                    <td>{{ $banner['name'] }}</td>
+                                    <td>{{ $brand['name'] }}</td>
                                     <td>
-                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $banner['thumbnail'] }}"
-                                            alt="{{ $banner['name'] }}">
+                                        <img style="max-height: 90px;max-width: 120px;" src="{{ $brand['thumbnail'] }}"
+                                            alt="{{ $brand['name'] }}">
                                     </td>
-                                    <td>{{ $banner['position'] }}</td>
-                                    <td>{{ $banner['created_at'] }}</td>
+                                    <td>{{ $brand['created_at'] }}</td>
                                     <td>
-                                        <span class="badge {{ $banner['status'] == 1 ? 'bg-success' : 'bg-warning' }}">
-                                            {{ $banner['status'] == 1 ? 'active' : 'in-active' }}
+                                        <span class="badge {{ $brand['status'] == 1 ? 'bg-success' : 'bg-warning' }}">
+                                            {{ $brand['status'] == 1 ? 'active' : 'in-active' }}
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="{{ route('banner.edit', $banner['id']) }}" class="me-3">
+                                        <a href="{{ route('brand.edit', $brand['id']) }}" class="me-3">
                                             <i class="align-middle" data-feather="edit"></i>
                                         </a>
                                         <a href="javascript:void(0)" id="delete-action"
-                                            data-url="{{ route('banner.destroy', $banner['id']) }}">
+                                            data-url="{{ route('brand.destroy', $brand['id']) }}">
                                             <i class="align-middle text-danger" data-feather="x-circle"></i>
                                         </a>
                                     </td>

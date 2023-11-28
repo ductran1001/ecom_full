@@ -3,38 +3,38 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use App\Models\Category;
+use App\Http\Requests\BrandRequest;
+use App\Models\Brand;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
-    protected $prefix = 'backend.pages.category.';
+    protected $prefix = 'backend.pages.brand.';
 
     public function __construct()
     {
     }
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'desc')->with('parent')->get() ?? [];
+        $brands = Brand::orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'index', [
-            'title_page' => 'Category',
-            'categories' => $categories,
+            'title_page' => 'Brand',
+            'brands' => $brands,
         ]);
     }
 
     public function create()
     {
-        $categories = Category::where('parent_id', 0)->orderBy('created_at', 'desc')->get() ?? [];
+        $brands = Brand::orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'create', [
-            'title_page' => 'Create category',
-            'categories' => $categories,
+            'title_page' => 'Create brand',
+            'brands' => $brands,
         ]);
     }
 
-    public function store(CategoryRequest $request)
+    public function store(BrandRequest $request)
     {
         try {
-            Category::create($request->all());
+            Brand::create($request->all());
             return response()->json([
                 "status" => true,
                 'msg' => 'Create new successfully.'
@@ -53,24 +53,24 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
-        $categories = Category::where('parent_id', 0)->where('id', '!=', $id)->orderBy('created_at', 'desc')->get() ?? [];
+        $brand = Brand::findOrFail($id);
+        $brands = Brand::orderBy('created_at', 'desc')->get() ?? [];
         return view($this->prefix . 'edit', [
-            'title_page' => 'Update category',
-            'category' => $category,
-            'categories' => $categories,
+            'title_page' => 'Update brand',
+            'brand' => $brand,
+            'brands' => $brands,
         ]);
     }
 
 
-    public function update(CategoryRequest $request, $id)
+    public function update(BrandRequest $request, $id)
     {
         try {
-            $category = Category::findOrFail($id);
-            $category->update($request->all());
+            $brand = Brand::findOrFail($id);
+            $brand->update($request->all());
             return response()->json([
                 "status" => true,
-                'msg' => 'Category updated successfully.'
+                'msg' => 'Brand updated successfully.'
             ], 201);
         } catch (\Throwable $th) {
             return response()->json([
@@ -83,11 +83,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = Category::findOrFail($id);
-            $category->delete();
+            $brand = Brand::findOrFail($id);
+            $brand->delete();
             return response()->json([
                 "status" => true,
-                'msg' => 'Category deleted successfully.'
+                'msg' => 'Brand deleted successfully.'
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
